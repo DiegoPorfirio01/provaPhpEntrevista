@@ -1,33 +1,52 @@
 <link rel="stylesheet" href="../../assets/bootstrap.min.css">
-<?php require_once '../../config/includes.php' ?>
-
+<link rel="stylesheet" href="../../assets/style.css">
+<?php
+require_once '../../config/includes.php';
+?>
 <div class="container mt-5">
     <div class="panel panel-default">
         <div class="panel-body m-5 text-center">
             <h3>Criar Usuário</h3>
         </div>
-        <form action="../salva.php" method="post">
-            <div class="row ">
-                <div class="form-group col-sm-12">
-                    <label for=""> Usuário </label>
-                    <input type="text" class="form-control" name="nome" maxlength="150" required >
-                </div>
-                <div class="form-group col-sm-12">
-                <label for=""> E-MAIL </label>
-                    <input type="text" class="form-control" name="nome" maxlength="150" required >
-                </div>
-                <div class="form-group col-sm-12">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Azul
-                        </label>
+        <?php 
+        if(isset($_SESSION['message']) && $_SESSION['message'] != ''){
+            echo $_SESSION['message'];
+            $_SESSION['message'] = '';
+        }
+        ?>
+        <div class="panel-body">
+            <form action="salva.php" method="post">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="nome">Usuário</label>
+                        <input type="text" class="form-control" name="name" maxlength="100" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="email">E-mail</label>
+                        <input type="text" class="form-control" name="email" maxlength="100" required>
                     </div>
                 </div>
-                <div class="form-group col-sm-12">
-                    <button class="btn btn-primary btn-block" type="submit">Criar Usuário</button>
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <div class="form-check">
+                            <?php
+                            $cores = new Colors();
+                            $resultado = $cores->listColors();
+                            foreach ($resultado as $chave => $valor) { ?>
+                                <label class="form-check d-inline-block"></label><?= $valor->getName() ?></label>
+                                <div class="input-colors" style="background-color:<?= $valor->getName() ?>;"></div>
+                                <input class="form-check d-inline-block" type="checkbox" name="color<?= $valor->getId() ?>">
+                            <?php } ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col-sm-12 text-center mt-5">
+                    <button type="submit" class="btn btn-primary botoes">Salvar</button>
+                    <a href="../../"><button type="button" class="btn btn-warning botoes">Voltar</button></a>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 </div>
