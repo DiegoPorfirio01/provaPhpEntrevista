@@ -35,7 +35,7 @@ if ($user->alter() > 0) {
     $resultado = Colors::listColors();
     $resultado2 = Colors::listUserColors($user->getId());
     foreach ($resultado as $chave => $valor) {
-        if (isset($_POST['color' . $valor->getId()]) && !in_array($valor->getId(), $resultado2)) {
+        if (isset($_POST['color' . $valor->getId()])) {
             //verifica se o dado já existe na tabela
             $check = UserColors::check($valor->getId(), $_POST['id']);
             if(empty($check)) {
@@ -46,9 +46,11 @@ if ($user->alter() > 0) {
                 $userColors->insert();
             }
         } else {
-            $userColors = new UserColors();
-            $userColors->setId($valor->getIdUserColor());
-            $userColors->destroy();
+            if (in_array($valor->getId(), array_column($resultado2, 'id'))) {
+                $userColors = new UserColors();
+                $userColors->setId($valor->getIdUserColor());
+                $userColors->destroy();
+            }
         }
     } 
     // Exibir mensagem de sucesso
