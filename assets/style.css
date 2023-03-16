@@ -1,0 +1,19 @@
+/* Cria */
+
+.input-colors {
+    height: 10px;
+    width: 10px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.botoes {
+    display: inline-block;
+    width: 100px;
+    margin-left: 20px;
+}
+
+.ola {
+    margin: -10px;
+    float: left;
+}
