@@ -15,6 +15,7 @@ class Colors {
             FROM colors AS col
        LEFT JOIN user_colors AS uc
               ON col.id = uc.color_id
+        GROUP BY col.id     
         "
         ;
         $resultSet = $connection->query($sql);
