@@ -1,32 +1,35 @@
 <?php
-class Colors {
+class Colors
+{
     public $id;
     public $name;
 
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
     //MÉTODOS
-    static function listColors() {
+    static function listColors()
+    {
         $connection = new Connection();
         $sql =
-         "SELECT col.id,
+            "SELECT col.id,
                  col.name,
                  uc.id AS idUserColor
             FROM colors AS col
        LEFT JOIN user_colors AS uc
               ON col.id = uc.color_id
         GROUP BY col.id     
-        "
-        ;
+        ";
         $resultSet = $connection->query($sql);
         $resultado = array();
         $i = 0;
         $totalResultados = count($resultSet);
-        for ($j=0; $j<$totalResultados; $j++) {
+        for ($j = 0; $j < $totalResultados; $j++) {
             $objeto = new Users();
-            foreach ($resultSet[$j] as $chave=>$valor) {
+            foreach ($resultSet[$j] as $chave => $valor) {
                 if (!is_int($chave)) {
-                    $set = "set".ucfirst($chave);
+                    $set = "set" . ucfirst($chave);
                     $objeto->$set($valor);
                 }
             }
@@ -36,7 +39,8 @@ class Colors {
         return $resultado;
     }
 
-    static function listUserColors($id) {
+    static function listUserColors($id)
+    {
         $connection = new Connection();
         $sql =
             "SELECT
@@ -46,17 +50,16 @@ class Colors {
          LEFT JOIN user_colors AS uc 
                 ON col.id = uc.color_id        
              WHERE uc.user_id = '$id'
-            "
-        ;
+            ";
         $resultSet = $connection->query($sql);
         $resultado = array();
         $i = 0;
         $totalResultados = count($resultSet);
-        for ($j=0; $j<$totalResultados; $j++) {
+        for ($j = 0; $j < $totalResultados; $j++) {
             $objeto = new Users();
-            foreach ($resultSet[$j] as $chave=>$valor) {
+            foreach ($resultSet[$j] as $chave => $valor) {
                 if (!is_int($chave)) {
-                    $set = "set".ucfirst($chave);
+                    $set = "set" . ucfirst($chave);
                     $objeto->$set($valor);
                 }
             }

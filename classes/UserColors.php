@@ -1,24 +1,28 @@
 <?php
-class UserColors{
+class UserColors
+{
     public $id;
     public $user_id;
     public $color_id;
 
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
     //MÉTODOS
-    public static function check($color_id, $user_id) {
+    public static function check($color_id, $user_id)
+    {
         $connection = new Connection();
         $sql = "SELECT * FROM user_colors WHERE color_id = $color_id AND user_id = $user_id";
         $resultSet = $connection->query($sql);
         $resultado = array();
         $i = 0;
         $totalResultados = count($resultSet);
-        for ($j=0; $j<$totalResultados; $j++) {
+        for ($j = 0; $j < $totalResultados; $j++) {
             $objeto = new Users();
-            foreach ($resultSet[$j] as $chave=>$valor) {
+            foreach ($resultSet[$j] as $chave => $valor) {
                 if (!is_int($chave)) {
-                    $set = "set".ucfirst($chave);
+                    $set = "set" . ucfirst($chave);
                     $objeto->$set($valor);
                 }
             }
@@ -32,10 +36,10 @@ class UserColors{
         $sql = "DELETE FROM user_colors WHERE id = ?";
         $bd = new Connection;
         $dados = array(
-            array('1'=>$this->id)
+            array('1' => $this->id)
         );
         $result = $bd->destroy($sql, $dados);
-        if ($result=='ok') {
+        if ($result == 'ok') {
             return true;
         } else {
             return false;
@@ -65,23 +69,23 @@ class UserColors{
             return false;
         }
     }
-    static function listColorsUser($id) {
+    static function listColorsUser($id)
+    {
         $connection = new Connection();
         $sql =
-           "SELECT
+            "SELECT
                  *
               FROM user_colors
-             WHERE user_id = $id"
-        ;
+             WHERE user_id = $id";
         $resultSet = $connection->query($sql);
         $resultado = array();
         $i = 0;
         $totalResultados = count($resultSet);
-        for ($j=0; $j<$totalResultados; $j++) {
+        for ($j = 0; $j < $totalResultados; $j++) {
             $objeto = new Users();
-            foreach ($resultSet[$j] as $chave=>$valor) {
+            foreach ($resultSet[$j] as $chave => $valor) {
                 if (!is_int($chave)) {
-                    $set = "set".ucfirst($chave);
+                    $set = "set" . ucfirst($chave);
                     $objeto->$set($valor);
                 }
             }
@@ -94,7 +98,7 @@ class UserColors{
     //GETTERS E SETTERS
 
     //SEM TRATAMENTO DE DADOS
-       function __call($method, $params)
+    function __call($method, $params)
     {
         $var = lcfirst(substr($method, 3));
         if (strncasecmp($method, "get", 3) === 0) {

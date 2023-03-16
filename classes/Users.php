@@ -1,9 +1,12 @@
 <?php
-class Users{
+class Users
+{
     public $id;
     public $email;
     public $name;
-    public function __construct(){}
+    public function __construct()
+    {
+    }
 
     //MÉTODOS
     public function alter()
@@ -23,7 +26,7 @@ class Users{
             )
         );
         $result = $bd->alter($sql, $dados);
-        if ($result=='ok') {
+        if ($result == 'ok') {
             return true;
         } else {
             return false;
@@ -34,10 +37,10 @@ class Users{
         $sql = "DELETE FROM users WHERE id = ?";
         $bd = new Connection;
         $dados = array(
-            array('1'=>$this->id)
+            array('1' => $this->id)
         );
         $result = $bd->destroy($sql, $dados);
-        if ($result=='ok') {
+        if ($result == 'ok') {
             return true;
         } else {
             return false;
@@ -67,7 +70,8 @@ class Users{
             return false;
         }
     }
-    function listUsers() {
+    function listUsers()
+    {
         $connection = new Connection();
         $sql =
             "
@@ -85,17 +89,16 @@ class Users{
                 ) AS cor
             FROM
                 users AS us;
-           "
-        ;
+           ";
         $resultSet = $connection->query($sql);
         $resultado = array();
         $i = 0;
         $totalResultados = count($resultSet);
-        for ($j=0; $j<$totalResultados; $j++) {
+        for ($j = 0; $j < $totalResultados; $j++) {
             $objeto = new Users();
-            foreach ($resultSet[$j] as $chave=>$valor) {
+            foreach ($resultSet[$j] as $chave => $valor) {
                 if (!is_int($chave)) {
-                    $set = "set".ucfirst($chave);
+                    $set = "set" . ucfirst($chave);
                     $objeto->$set($valor);
                 }
             }
@@ -115,8 +118,8 @@ class Users{
                AND email IS NOT NULL
         ";
         $resultado = $bd->query($sql);
-        if (count($resultado)==1) {
-            foreach ($resultado[0] as $chave=>$valor) {
+        if (count($resultado) == 1) {
+            foreach ($resultado[0] as $chave => $valor) {
                 if (!is_int($chave)) {
                     $this->$chave = $valor;
                 }
@@ -135,8 +138,8 @@ class Users{
              WHERE id = '$this->id'
         ";
         $resultado = $bd->query($sql);
-        if (count($resultado)==1) {
-            foreach ($resultado[0] as $chave=>$valor) {
+        if (count($resultado) == 1) {
+            foreach ($resultado[0] as $chave => $valor) {
                 if (!is_int($chave)) {
                     $this->$chave = $valor;
                 }
@@ -146,7 +149,7 @@ class Users{
             return false;
         }
     }
-    
+
     //GETTERS E SETTERS
 
     // SEM TRATAMENTO DE DADOS

@@ -9,8 +9,8 @@ require_once 'config/includes.php';
         <div class="panel-body m-5">
             <a href='telas/usuarios/cria.php'><button class="btn btn-primary botoes" type="button">Criar</button></a>
         </div>
-        <?php 
-        if(isset($_SESSION['message']) && $_SESSION['message'] != ''){
+        <?php
+        if (isset($_SESSION['message']) && $_SESSION['message'] != '') {
             echo $_SESSION['message'];
             $_SESSION['message'] = '';
         }
@@ -43,7 +43,7 @@ require_once 'config/includes.php';
                                 <a href="/telas/usuarios/exclui.php?id=<?= $valor->getId() ?>" class="btn btn-danger botoes">Excluir</a>
                             </td>
                         </tr>
-                    <?php }
+                <?php }
                 }
                 ?>
             </tbody>

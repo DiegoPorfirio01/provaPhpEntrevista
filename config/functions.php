@@ -1,4 +1,4 @@
-<?php 
+<?php
 function nomeProprio($nome, $minimo = 3)
 {
     $nome = strtolower($nome);

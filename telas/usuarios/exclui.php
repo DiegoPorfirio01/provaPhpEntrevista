@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once('../../config/includes.php');
 $id = $_GET['id'];
 $users = new Users;

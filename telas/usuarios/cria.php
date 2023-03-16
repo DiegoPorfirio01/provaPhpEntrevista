@@ -8,8 +8,8 @@ require_once '../../config/includes.php';
         <div class="panel-body m-5 text-center">
             <h3>Criar Usuário</h3>
         </div>
-        <?php 
-        if(isset($_SESSION['message']) && $_SESSION['message'] != ''){
+        <?php
+        if (isset($_SESSION['message']) && $_SESSION['message'] != '') {
             echo $_SESSION['message'];
             $_SESSION['message'] = '';
         }
@@ -42,11 +42,11 @@ require_once '../../config/includes.php';
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-center mt-5">
-                    <button type="submit" class="btn btn-primary botoes">Salvar</button>
-                    <a href="../../"><button type="button" class="btn btn-warning botoes">Voltar</button></a>
+                        <button type="submit" class="btn btn-primary botoes">Salvar</button>
+                        <a href="../../"><button type="button" class="btn btn-warning botoes">Voltar</button></a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-</div>
 </div>
