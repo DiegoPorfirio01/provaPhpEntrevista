@@ -29,18 +29,23 @@ require_once 'config/includes.php';
                 <?php
                 $users = new Users();
                 $resultado = $users->listUsers();
-                foreach ($resultado as $chave => $valor) { ?>
-                    <tr>
-                        <td><?= $valor->getId(); ?></td>
-                        <td><?= $valor->getName(); ?></td>
-                        <td><?= $valor->getEmail(); ?></td>
-                        <td><?= $valor->getCor() == '' ? 'Sem Cor' : $valor->getCor(); ?></td>
-                        <td>
-                            <a href="/telas/usuarios/edita.php?id=<?= $valor->getId() ?>" class="btn btn-warning botoes">Editar</a>
-                            <a href="/telas/usuarios/exclui.php?id=<?= $valor->getId() ?>" class="btn btn-danger botoes">Excluir</a>
-                        </td>
-                    </tr>
-                <?php } ?>
+                if (empty($resultado)) {
+                    echo "<tr><td colspan='5' class='text-center'>Nenhum registro encontrado.</td></tr>";
+                } else {
+                    foreach ($resultado as $chave => $valor) { ?>
+                        <tr>
+                            <td><?= $valor->getId(); ?></td>
+                            <td><?= $valor->getName(); ?></td>
+                            <td><?= $valor->getEmail(); ?></td>
+                            <td><?= $valor->getCor() == '' ? 'Sem Cor' : $valor->getCor(); ?></td>
+                            <td>
+                                <a href="/telas/usuarios/edita.php?id=<?= $valor->getId() ?>" class="btn btn-warning botoes">Editar</a>
+                                <a href="/telas/usuarios/exclui.php?id=<?= $valor->getId() ?>" class="btn btn-danger botoes">Excluir</a>
+                            </td>
+                        </tr>
+                    <?php }
+                }
+                ?>
             </tbody>
         </table>
     </div>
