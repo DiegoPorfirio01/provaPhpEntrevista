@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="../../assets/bootstrap.min.css">
-<link rel="stylesheet" href="../../assets/style.css">
 <?php
 require_once '../../config/includes.php';
 ?>
+<link rel="stylesheet" href="../../assets/bootstrap.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
 <div class="container mt-5">
     <div class="panel panel-default">
         <div class="panel-body m-5 text-center">

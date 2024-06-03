@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="../../assets/bootstrap.min.css">
-<link rel="stylesheet" href="../../assets/style.css">
 <?php
 require_once '../../config/includes.php';
 $user = new Users();
 $user->setId($_GET['id']);
 $user->select();
 ?>
+<link rel="stylesheet" href="../../assets/bootstrap.min.css">
+<link rel="stylesheet" href="../../assets/style.css">
 <div class="container mt-5">
     <div class="panel panel-default">
         <div class="panel-body m-5 text-center">
@@ -35,12 +35,13 @@ $user->select();
                         <div class="form-check">
                             <?php
                             $colorUser = UserColors::listColorsUser($user->getId());
-                            $color = new Colors();
-                            $resultado = $color->listColors();
+                            $resultado = Colors::listColors();
                             foreach ($resultado as $chave => $valor) { ?>
                                 <label class="form-check d-inline-block"><?= $valor->getName() ?></label>
                                 <div class="input-colors" style="background-color:<?= $valor->getName() ?>;"></div>
-                                <input class="form-check d-inline-block" type="checkbox" name="color<?= $valor->getId() ?>" <?php if (in_array($valor->getId(), array_column($colorUser, 'color_id'))) { ?> checked<?php } ?>>
+                                <input class="form-check d-inline-block" type="checkbox" name="color<?= $valor->getId() ?>" 
+                                <?php if (in_array($valor->getId(), array_column($colorUser, 'color_id'))) { ?> checked<?php } ?>
+                                >
                             <?php } ?>
                         </div>
                     </div>

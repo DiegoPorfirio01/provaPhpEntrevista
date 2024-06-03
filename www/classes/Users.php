@@ -4,9 +4,8 @@ class Users
     public $id;
     public $email;
     public $name;
-    public function __construct()
-    {
-    }
+    
+    public function __construct(){}
 
     //MÉTODOS
     public function alter()
@@ -134,7 +133,7 @@ class Users
         $bd = new Connection;
         $sql = "
             SELECT *
-              FROM Users
+              FROM users
              WHERE id = '$this->id'
         ";
         $resultado = $bd->query($sql);

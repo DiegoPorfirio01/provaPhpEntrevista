@@ -2,23 +2,32 @@
 
 class Connection
 {
-
-    private $databaseFile;
-    private $connection;
+    public $connection;
 
     public function __construct()
     {
-        $this->databaseFile = realpath(__DIR__ . "/../database/db.sqlite");
-        $this->connect();
+        $host = "db";
+        $username = "root";
+        $password = "root";
+        $db = "teste";
+
+        try {
+            $this->connection = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e) {
+            echo 'ERROR: ' . $e->getMessage();
+        }
     }
-    private function connect()
+
+    public function getConnection()
     {
-        return $this->connection = new PDO("sqlite:{$this->databaseFile}");
+        return $this->connection;
     }
+
     public function alter($query, $dados)
     {
         try {
-            $banco = $this->connect();
+            $banco = $this->getConnection();
             $statement = $banco->prepare($query);
             for ($i = 0; $i < count($dados); $i++) {
                 foreach ($dados[$i] as $chave => $valor) {
@@ -42,7 +51,7 @@ class Connection
     public function query($query)
     {
         try {
-            $banco = $this->connect();
+            $banco = $this->getConnection();
 
             $resultado = $banco->prepare($query);
             if (!$resultado->execute()) {
@@ -61,7 +70,7 @@ class Connection
     public function destroy($query, $dados)
     {
         try {
-            $banco = $this->connect();
+            $banco = $this->getConnection();
             $statement = $banco->prepare($query);
             for ($i = 0; $i < count($dados); $i++) {
                 foreach ($dados[$i] as $chave => $valor) {
@@ -84,7 +93,7 @@ class Connection
     public function insert($query, $dados)
     {
         try {
-            $banco = $this->connect();
+            $banco = $this->getConnection();
             $statement = $banco->prepare($query);
             for ($i = 0; $i < count($dados); $i++) {
                 foreach ($dados[$i] as $chave => $valor) {
@@ -108,7 +117,7 @@ class Connection
     public function insertAndReturnId($query, $dados)
     {
         try {
-            $banco = $this->connect();
+            $banco = $this->getConnection();
             $statement = $banco->prepare($query);
             for ($i = 0; $i < count($dados); $i++) {
                 foreach ($dados[$i] as $chave => $valor) {
