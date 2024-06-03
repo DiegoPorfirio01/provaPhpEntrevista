@@ -5,9 +5,7 @@ class UserColors
     public $user_id;
     public $color_id;
 
-    public function __construct()
-    {
-    }
+    public function __construct(){}
 
     //MÉTODOS
     public static function check($color_id, $user_id)

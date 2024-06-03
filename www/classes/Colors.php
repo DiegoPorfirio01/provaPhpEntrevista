@@ -4,9 +4,7 @@ class Colors
     public $id;
     public $name;
 
-    public function __construct()
-    {
-    }
+    public function __construct(){}
 
     //MÉTODOS
     static function listColors()
@@ -14,12 +12,8 @@ class Colors
         $connection = new Connection();
         $sql =
             "SELECT col.id,
-                 col.name,
-                 uc.id AS idUserColor
+                 col.name
             FROM colors AS col
-       LEFT JOIN user_colors AS uc
-              ON col.id = uc.color_id
-        GROUP BY col.id     
         ";
         $resultSet = $connection->query($sql);
         $resultado = array();

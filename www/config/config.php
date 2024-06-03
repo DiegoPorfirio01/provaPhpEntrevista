@@ -16,7 +16,7 @@ if (DEV) {
     header("Cache-Control: max-age=2592000"); //30days (60sec * 60min * 24hours * 30days)
 }
 
-if ($_SERVER['SERVER_NAME'] != 'localhost') {
+if ($_SERVER['SERVER_NAME'] != 'localhost' || $_SERVER['SERVER_NAME'] != 'docker.localhost') {
     define('PROTOCOLO', 'https://');
 } else {
     define('PROTOCOLO', 'http://');
