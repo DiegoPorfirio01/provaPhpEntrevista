@@ -23,7 +23,8 @@ $commands = [
         email VARCHAR(100) NOT NULL UNIQUE
     )",
     "INSERT INTO colors(name) VALUES ('Blue'), ('Red'), ('Yellow'), ('Green')",
-    "INSERT INTO users(name, email) VALUES ('Foo Bar', 'foo@bar.com.br'), ('Bar Baz', 'bar@baz.com.br'), ('Baz Foo', 'baz@foo.com.br')"
+    "INSERT INTO users(name, email) VALUES ('Foo Bar', 'foo@bar.com.br'), ('Bar Baz', 'bar@baz.com.br'), ('Baz Foo', 'baz@foo.com.br')",
+    "INSERT INTO user_colors (user_id, color_id) VALUES (1, 1), (1, 2), (2, 3), (3, 4), (3, 1)"
 ];
 
 // Executar comandos SQL
