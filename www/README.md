@@ -1,22 +1,5 @@
 # Teste de conhecimentos PHP + Banco de dados
 
-### 🚀 Docker (feature adicionada)!
-Para rodar o projeto usaremos containers Docker. Os containers são nginx, mysql, php. Garanta que você tenha o Docker instalado em sua máquina.
-
-1. 🛠️ **Acesse a pasta do projeto e execute:**
-    ```sh
-    docker-compose up -d
-    ```
-    Isso vai subir os containers necessários para a aplicação rodar.
-
-2. 📂 **Após isso, acesse a pasta `www` e rode o comando:**
-    ```sh
-    docker-compose exec php php /www/migrateAndSeedScript.php
-    ```
-    Isso vai fazer com que as tabelas e dados iniciais sejam criados.
-
-> 🔔 **Nota:** Esta é uma feature adicionada ao projeto original para facilitar o setup do ambiente.
-
 ##### Objetivo
 Criar um Crud simples, totalmente desenvolvido em PHP, sem a utilização de frameworks, onde será possível Criar/Editar/Excluir/Listar usuários. O sistema também deve possuir a possibilidade de vincular/desvincular várias cores ao usuário.
 
