@@ -15,6 +15,9 @@ Para rodar o projeto usaremos containers Docker. Os containers são nginx, mysql
     ```
     Isso vai fazer com que as tabelas e dados iniciais sejam criados.
 
+3. 🌐 **Acesse a aplicação em:**
+    [http://docker.localhost](http://docker.localhost)
+   
 > 🔔 **Nota:** Esta é uma feature adicionada ao projeto original para facilitar o setup do ambiente.
 
 ---
